@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const totalProduct = 10;
+  const [rightButton, setRightButton] = useState(0);
+  const [leftButton, setLeftButton] = useState(totalProduct - rightButton);
+
+  const leftHandler = () => {
+    setRightButton(rightButton - 1);
+    setLeftButton(leftButton + 1);
+  };
+  const rightHandler = () => {
+    setRightButton(rightButton + 1);
+    setLeftButton(leftButton - 1);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <h1>Hello, React!</h1>
+      <p>Welcome to your React application.</p>
+      <div className="flex mt-6 bg-amber-500">
+        <div className="px-65">
+          <button onClick={leftHandler}>Left Button</button>
+          <span>{leftButton}</span>
+        </div>
+        <div className="px-80 bg-blue-800">
+          <button onClick={rightHandler}>Right Button</button>
+          <span>total product : {rightButton}</span>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
